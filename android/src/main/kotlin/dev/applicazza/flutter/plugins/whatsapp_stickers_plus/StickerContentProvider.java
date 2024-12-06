@@ -173,9 +173,14 @@ public class StickerContentProvider extends ContentProvider {
     }
 
     private List<StickerPack> getStickerPackList() {
-        if (stickerPackList == null) {
+        // This check causes this error:
+        // Third party pack cannot be found likely because the corresponding app is restricted
+        // when try to add a sticker pack after successfully adding a sticker pack.
+        // For details, see
+        // https://github.com/WhatsApp/stickers/issues/584
+        // if (stickerPackList == null) {
             readContentFile(Objects.requireNonNull(getContext()));
-        }
+        // }
         return stickerPackList;
     }
 

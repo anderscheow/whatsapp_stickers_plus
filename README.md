@@ -22,6 +22,15 @@ android {
 }
 ```
 
+Add the following option to your AndroidManifest.xml file, or you will get error like: whatsapp not installed, when you send to pack
+
+```
+<queries>
+    <package android:name="com.whatsapp" />
+    <package android:name="com.whatsapp.w4b" />
+</queries>
+```
+
 ### iOS
 
 Do not forget to add following entry to ```Info.plist``` with ```Runner``` target.
