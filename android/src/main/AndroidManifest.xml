@@ -1,15 +1,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" 
     package="dev.applicazza.flutter.plugins.whatsapp_stickers_plus">
-
-    <application 
-        android:name="io.flutter.app.FlutterApplication" 
+    <queries>
+        <!-- Query for WhatsApp -->
+        <package android:name="com.whatsapp" />
+        <!-- Query for WhatsApp Business -->
+        <package android:name="com.whatsapp.w4b" />
+    </queries>
+    <application
         tools:ignore="GoogleAppIndexingWarning" 
         android:allowBackup="false" 
         android:fullBackupContent="false">
 
-        <provider 
-            android:name=".StickerContentProvider" 
+        <provider
+            android:name=".StickerContentProvider"
             android:authorities="${applicationId}.stickercontentprovider" 
             android:enabled="true"
             android:exported="true"

@@ -144,6 +144,8 @@ Future installFromRemote() async {
     publisherWebsite: '',
     privacyPolicyWebsite: '',
     licenseAgreementWebsite: '',
+    androidPlayStoreLink: 'https://play.google.com/store/apps/details?id=com.whatsapp',
+    iosAppStoreLink: 'https://itunes.apple.com/sg/app/whatsapp-messenger/id310633997',
   );
 
   stickers.forEach((sticker, emojis) {

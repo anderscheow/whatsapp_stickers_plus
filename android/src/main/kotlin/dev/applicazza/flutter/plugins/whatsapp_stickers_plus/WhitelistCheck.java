@@ -14,7 +14,9 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ProviderInfo;
 import android.database.Cursor;
+import android.os.Build;
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -94,11 +96,13 @@ class WhitelistCheck {
 
     private static boolean isPackageInstalled(String packageName, PackageManager packageManager) {
         try {
-            final ApplicationInfo applicationInfo = packageManager.getApplicationInfo(packageName, 0);
-
-            // noinspection SimplifiableIfStatement
-            return applicationInfo.enabled;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                return packageManager.getApplicationInfo(packageName, PackageManager.ApplicationInfoFlags.of(0L)).enabled;
+            } else {
+                return packageManager.getApplicationInfo(packageName, 0).enabled;
+            }
         } catch (PackageManager.NameNotFoundException e) {
+            Log.w("WhitelistCheck", "exception", e);
             return false;
         }
     }
